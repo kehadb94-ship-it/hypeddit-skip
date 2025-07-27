@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Hypeddit Skip",
+  "version": "0.1.0",
+  "description": "Automatically fills in information for Hypeddit download gates.",
+  "author": "HypedditSkip",
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Hypeddit Skip",
+    "default_icon": {
+      "16": "popup/icon16.png",
+      "48": "popup/icon48.png",
+      "128": "popup/icon128.png",
+      "512": "popup/icon512.png"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": ["scripting", "activeTab", "storage"],
+  "host_permissions": [
+    "*://hypeddit.com/*",
+    "*://www.hypeddit.com/*",
+    "https://secure.soundcloud.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://hypeddit.com/*",
+        "*://www.hypeddit.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://secure.soundcloud.com/*authorize*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "popup/icon16.png",
+    "48": "popup/icon48.png",
+    "128": "popup/icon128.png",
+    "512": "popup/icon512.png"
+  }
+}
